@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style>
+
+		*{ box-sizing: border-box; }
+
+		.container{
+			width: 950px;
+			height: 240px;
+			margin: 0 auto;
+			background: #EEE;
+		}
+
+		.container div{
+			width: 200px; height: 120px;
+			display: inline-block;
+			float: left;
+			position: relative;
+		}
+
+		.container div .img{
+			content: '';
+			display: block;
+			width: 100%; height: 100%;
+			position: relative;
+			left: 0; top: 0;
+			transition: all 0.5s;
+			box-shadow: inset 0 0 0 1px white;
+			background-color: #eee;
+			z-index: 2;
+			background-size: cover;
+			background-position: center top;
+		}
+
+		.container.sel-1 div:nth-child(1) .img{ width: 350px; height: 240px; top: 0; }		
+		.container.sel-1 div:nth-child(2) .img ,
+		.container.sel-1 div:nth-child(3) .img ,
+		.container.sel-1 div:nth-child(4) .img { left: 150px; }		
+		.container.sel-1 div:nth-child(5) .img, 
+		.container.sel-1 div:nth-child(6) .img, 
+		.container.sel-1 div:nth-child(7) .img{ left: 350px;}
+		
+		.container.sel-2 div:nth-child(2) .img{ width: 350px; height: 240px; top: 0; }
+		.container.sel-2 div:nth-child(3) .img ,
+		.container.sel-2 div:nth-child(4) .img { left: 150px; }
+		.container.sel-2 div:nth-child(6) .img ,
+		.container.sel-2 div:nth-child(7) .img { left: 350px; }
+		
+		.container.sel-3 div:nth-child(3) .img { width: 350px; height: 240px; top: 0; }
+		.container.sel-3 div:nth-child(4) .img { left: 150px; }
+		.container.sel-3 div:nth-child(7) .img { left: 350px;}
+
+		.container.sel-4 div:nth-child(4) .img{ width: 350px; height: 240px; top: 0; }
+
+		.container.sel-5 div:nth-child(5) .img { width: 350px; height: 240px; top: -120px; }		
+		.container.sel-5 div:nth-child(1) .img { left: 350px; }
+		.container.sel-5 div:nth-child(2) .img { left: 350px; }
+		.container.sel-5 div:nth-child(3) .img { left: 350px; }
+		.container.sel-5 div:nth-child(4) .img { left: 150px; top: 120px;}
+		.container.sel-5 div:nth-child(6) .img,
+		.container.sel-5 div:nth-child(7) .img { left: 150px; }
+
+		.container.sel-6 div:nth-child(6) .img{ width: 350px; height: 240px; top: -120px; }
+		.container.sel-6 div:nth-child(2) .img,
+		.container.sel-6 div:nth-child(3) .img{ left: 350px;}
+		.container.sel-6 div:nth-child(7) .img{ left: 150px; }
+		.container.sel-6 div:nth-child(4) .img{ left: 150px; top: 120px;}
+
+		.container.sel-7 div:nth-child(7) .img{ width: 350px; height: 240px; top: -120px; }
+		.container.sel-7 div:nth-child(3) .img{ left: 350px;}
+		.container.sel-7 div:nth-child(4) .img{ left: 150px; top: 120px;}
+
+		.container div .img1{ background-image: url('images/garfield.png'); background-position: center center; }
+		.container div .img2{ background-image: url('images/tintin.jpg'); }
+		.container div .img3{ background-image: url('images/mario.jpg'); }
+		.container div .img4{ background-image: url('images/chukie.jpg'); }
+		.container div .img5{ background-image: url('images/sonic.jpg'); }
+		.container div .img6{ background-image: url('images/tommy.jpg'); }
+		.container div .img7{ background-image: url('images/mm.jpg'); }
+		
+		.container div .img8{ background-image: url('images/st.jpg'); }
+		.container div .img9{ background-image: url('images/bat.jpg'); }
+		.container div .img10{ background-image: url('images/home.png'); }
+		.container div .img11{ background-image: url('images/tron.png'); }
+		.container div .img12{ background-image: url('images/snoke.jpg'); }
+		.container div .img13{ background-image: url('images/sw.jpg'); background-position: center center;}
+		.container div .img14{ background-image: url('images/yoda.jpg'); }
+
+	</style>
+</head>
+<body>
+
+
+	<div id="container" class="container sel-7">
+		<div><div data-i="1" class="img img1"></div></div>
+		<div><div data-i="2" class="img img2"></div></div>
+		<div><div data-i="3" class="img img3"></div></div>
+		<div><div data-i="4" class="img img4"></div></div>
+		<div><div data-i="5" class="img img5"></div></div>
+		<div><div data-i="6" class="img img6"></div></div>
+		<div><div data-i="7" class="img img7"></div></div>
+	</div>
+	<div id="container1" class="container sel-2">
+		<div><div data-i="1" class="img img8"></div></div>
+		<div><div data-i="2" class="img img9"></div></div>
+		<div><div data-i="3" class="img img10"></div></div>
+		<div><div data-i="4" class="img img11"></div></div>
+		<div><div data-i="5" class="img img12"></div></div>
+		<div><div data-i="6" class="img img13"></div></div>
+		<div><div data-i="7" class="img img14"></div></div>
+	</div>
+
+
+	<script>
+		document.addEventListener("DOMContentLoaded", function(event) {
+			var cnt = document.getElementById('container');
+			var cnt1 = document.getElementById('container1');
+			var astart = {};
+			var evtf = function(e){
+				if( astart[this.id] ) return;
+
+				var g = e.target.getAttribute('data-i');
+				try{
+					g = e.target.childNodes[0].getAttribute('data-i');
+				}catch(e){}
+				
+				if(!g) return; 
+				astart[this.id] = true;
+				this.className = 'container sel-' + g;
+				var id = this.id;
+				setTimeout(function(){ astart[id] = false; }, 400);
+			};
+			cnt.addEventListener('mouseover', evtf);
+			cnt1.addEventListener('mouseover', evtf);
+		});		
+	</script>
+
+
+</body>
+</html>
